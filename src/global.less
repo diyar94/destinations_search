@@ -1,0 +1,112 @@
+//@import (css) url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i|IBM+Plex+Sans:300,400&display=swap');
+
+@font-family: 'Work Sans', sans-serif;
+@code-family: 'IBM Plex Mono', Menlo, Courier, monospace;
+@font-weight-light: 300;
+@font-weight-normal: 400;
+
+@color-red: crimson;
+@color-orange: #e1ac41;
+
+@margin-size: 1rem;
+
+@form-item-margin-bottom: 0.6rem;
+
+@shadow-light-inset: inset 0px 0px 5px -3px rgba(0, 0, 0, 0.55);
+@shadow-light: 0px 0px 5px -3px rgba(0, 0, 0, 0.55);
+
+@import "assets/styles/components";
+@import "assets/styles/mixins";
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html, body {
+  font-family: @font-family;
+  margin: 0;
+  height: 100%;
+}
+
+
+#root {
+  height: 100%;
+
+  > div.ant-pro-layout {
+	height: 100%;
+  }
+}
+
+.debug {
+  background-color: rgba(184, 155, 181, 0.1) !important;
+  border: dashed 1px rgba(184, 155, 181);
+}
+
+.red {
+  color: crimson;
+}
+
+
+.h-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.v-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.mt {
+  margin-top: @margin-size;
+}
+
+.mb {
+  margin-bottom: @margin-size;
+}
+
+.ml {
+  margin-left: @margin-size;
+}
+
+.mr {
+  margin-right: @margin-size;
+}
+
+.pt {
+  padding-top: @margin-size;
+}
+
+.pt-xxl {
+  padding-top: @margin-size*3;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+.shadow {
+  box-shadow: @shadow-light;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.bold-font {
+  font-weight: bold;
+}
