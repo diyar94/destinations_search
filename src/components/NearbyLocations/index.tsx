@@ -5,7 +5,6 @@ import React, {useEffect, useState} from 'react';
 import {findNearbyLocations} from '@/utils/haversineDistance';
 import {isEmptyObject} from '@/utils/isEmptyObject';
 import {DataItem} from '@/types';
-import {RequestOptionsWithResponse, RequestResponse} from 'umi-request';
 
 type NearbyLocationsProps = {
     selectedCountry: DataItem;

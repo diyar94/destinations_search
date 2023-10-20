@@ -29,7 +29,7 @@ const Page = () =>
             {!isEmptyObject(selectedCountryAtomValue) && <>
                 <DestinationDetails country={selectedCountryAtomValue as DataItem}/>
                 <div className={'card-container-nearby'}>Nearby Locations:</div>
-                <NearbyLocations selectedCountry={selectedCountryAtomValue}
+                <NearbyLocations selectedCountry={selectedCountryAtomValue as DataItem}
                                  handleTagClick={handleTagClick}/>
             </>
             }
