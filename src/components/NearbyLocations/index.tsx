@@ -1,8 +1,8 @@
-import {Spin, Tag} from 'antd';
+import {Spin} from 'antd';
 import {useRequest} from 'ahooks';
 import {apiGet} from '@/api';
 import {useEffect, useState} from 'react';
-import {findNearbyLocations} from '../../../utils/haversineDistance';
+import {findNearbyLocations} from '@/utils/haversineDistance';
 import {DataItem} from '../../../mock/fake-api';
 import {isEmptyObject} from '@/utils/isEmptyObject';
 

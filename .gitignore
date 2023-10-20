@@ -4,10 +4,10 @@ node_modules/
 
 */.umi*/
 
-dist/
 .netlify/
 
 src/pages/__tests__/
 src/pages/test/
 
 *.lock
+!/package.json

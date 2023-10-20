@@ -1,4 +1,4 @@
-import {DataItem} from '../mock/fake-api';
+import {DataItem} from '../../mock/fake-api';
 
 type Destination = {
     id: number;
