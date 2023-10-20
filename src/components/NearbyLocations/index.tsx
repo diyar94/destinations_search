@@ -3,8 +3,8 @@ import {useRequest} from 'ahooks';
 import {apiGet} from '@/api';
 import {useEffect, useState} from 'react';
 import {findNearbyLocations} from '@/utils/haversineDistance';
-import {DataItem} from '../../../mock/fake-api';
 import {isEmptyObject} from '@/utils/isEmptyObject';
+import {DataItem} from '@/types';
 
 
 export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
@@ -32,7 +32,7 @@ export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
     }, [data]);
 
 
-    return loading ? <Spin size={'large'}/> : <div onClick={handleTagClick} className={'nearby-locations'}>
+    return loading ? <div className={'loading'}><Spin size={'large'}/></div> : <div onClick={handleTagClick} className={'nearby-locations'}>
         {nearByCountries.map(country => <div className={'nearby-locations-tag'}
                                              data-country={JSON.stringify(country)}
                                              key={country.id}>

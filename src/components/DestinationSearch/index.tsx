@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {useRequest} from 'ahooks';
 import {apiGet, apiUrl} from '@/api';
-import {DataItem} from '../../../mock/fake-api';
 import {Select, Spin} from 'antd';
 import {useAtom} from 'jotai';
 import {selectedCountryAtom} from '@/atoms/selectedCountryAtom';
+import {DataItem} from '@/types';
 
 const DestinationSearch: React.FC = () =>
 {
@@ -36,17 +36,19 @@ const DestinationSearch: React.FC = () =>
     return <div className={'destination-search-container'}>
         <div className={'inner-container'}>
         <span className={'location'}>Location</span>
+
         <Select showSearch
                 placeholder={'Search for a location...'}
                 className={'destination-search'}
                 defaultActiveFirstOption={false}
                 options={options}
                 suffixIcon={null}
-                loading={loading}
+                loading={true}
                 onSearch={handleSearch}
                 onSelect={handleSelect}
-                notFoundContent={loading ? <Spin size={'small'}/> : null}
+                notFoundContent={loading && <div className={'loading'}> <Spin size={'small'} /></div>}
         />
+
         </div>
     </div>
 };

@@ -1,15 +1,4 @@
-import {DataItem} from '../../mock/fake-api';
-
-type Destination = {
-    id: number;
-    name: string;
-    description: string;
-    country: string;
-    climate: string;
-    currency: string;
-    latitude: number;
-    longitude: number;
-};
+import {DataItem} from '@/types';
 
 const haversineDistance = (
     lat1: number,
@@ -35,7 +24,7 @@ export const findNearbyLocations = (
     longitude: number,
     destinations: DataItem[],
     limit: number = 5
-): Destination[] => {
+): DataItem[] => {
     const distances = destinations.map((destination) => ({
         ...destination,
         distance: haversineDistance(latitude, longitude, destination.latitude, destination.longitude)

@@ -1,4 +1,4 @@
-import {DataItem} from '../../../mock/fake-api';
+import {DataItem} from '@/types';
 
 export const DestinationDetails = ({country}: { country: DataItem }) => <div className={'destination-details'}>
     <div className={'name'}>{country.name}</div>

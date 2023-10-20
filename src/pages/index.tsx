@@ -5,7 +5,7 @@ import {useAtom} from 'jotai';
 import {selectedCountryAtom} from '@/atoms/selectedCountryAtom';
 import DestinationSearch from '@/components/DestinationSearch';
 import {isEmptyObject} from '@/utils/isEmptyObject';
-import {DataItem} from '../../mock/fake-api';
+import {DataItem} from '@/types';
 
 const Page = () =>
 {

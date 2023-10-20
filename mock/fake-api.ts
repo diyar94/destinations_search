@@ -1,17 +1,7 @@
 import {readFileSync} from 'fs';
+import {DataItem} from '@/types';
 
-export interface DataItem
-{
-    id: number,
-    name: string,
-    description:string,
-    country: string,
-    climate: string,
-    currency: string,
-    latitude: number,
-    longitude: number,
-    [key: string]: any
-}
+
 
 export default {
     'GET /api/places': (req, res) =>
