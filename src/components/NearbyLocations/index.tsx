@@ -16,7 +16,6 @@ export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
 
     useEffect(() =>
     {
-        console.log('selectedCountry', selectedCountry);
         if (!isEmptyObject(selectedCountry))
         {
             const values = {
@@ -32,7 +31,8 @@ export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
     {
         if (data)
         {
-            setAllNearByCountries(nearByCountries);
+            const {nearCountries} = data.data;
+            setAllNearByCountries(nearCountries);
         }
     }, [data]);
 
