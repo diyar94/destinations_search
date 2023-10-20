@@ -46,11 +46,9 @@ const DestinationSearch: React.FC = () =>
 
     const handleSelect = (_value: string, option: DataItem) => setSelectedCountryAtom(option);
 
-
     return <div className={'destination-search-container'}>
         <div className={'inner-container'}>
             <span className={'location'}>Location</span>
-
             <Select showSearch
                     placeholder={'Search for a location...'}
                     className={'destination-search'}

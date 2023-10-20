@@ -1,16 +1,20 @@
 import {Spin} from 'antd';
 import {useRequest} from 'ahooks';
 import {apiGet, apiUrl} from '@/api';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {findNearbyLocations} from '@/utils/haversineDistance';
 import {isEmptyObject} from '@/utils/isEmptyObject';
 import {DataItem} from '@/types';
+import {RequestOptionsWithResponse, RequestResponse} from 'umi-request';
 
-
-export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
+type NearbyLocationsProps = {
+    selectedCountry: DataItem;
+    handleTagClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
+export const NearbyLocations: React.FC<NearbyLocationsProps> = ({selectedCountry, handleTagClick}) =>
 {
-    const [nearByCountries, setAllCountries] = useState([]);
-    const {data, loading, run: getAllCountries} = useRequest(() => apiGet(`${apiUrl}`),
+    const [nearByCountries, setAllCountries] = useState<DataItem[]>([]);
+    const {data, loading, run: getAllCountries}= useRequest(() => apiGet(`${apiUrl}`),
         {manual: true, cacheKey: 'places'});
 
     useEffect(() =>
@@ -19,20 +23,19 @@ export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
         {
             getAllCountries();
         }
-
     }, [selectedCountry]);
 
     useEffect(() =>
     {
         if (data)
         {
-            const nearBy = findNearbyLocations(selectedCountry.latitude, selectedCountry.longitude, data as unknown as DataItem[]);
+            const nearBy = findNearbyLocations(selectedCountry.latitude, selectedCountry.longitude, data);
             setAllCountries(nearBy);
         }
     }, [data]);
 
-
-    return loading ? <div className={'loading'}><Spin size={'large'}/></div> : <div onClick={handleTagClick} className={'nearby-locations'}>
+    return loading ? <div className={'loading'}><Spin size={'large'}/></div> : <div onClick={handleTagClick}
+                                                                                    className={'nearby-locations'}>
         {nearByCountries.map(country => <div className={'nearby-locations-tag'}
                                              data-country={JSON.stringify(country)}
                                              key={country.id}>

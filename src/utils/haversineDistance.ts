@@ -22,7 +22,7 @@ const haversineDistance = (
 export const findNearbyLocations = (
     latitude: number,
     longitude: number,
-    destinations: DataItem[],
+    destinations: DataItem[] | Record<string, any>,
     limit: number = 5
 ): DataItem[] => {
     const distances = destinations.map((destination) => ({
