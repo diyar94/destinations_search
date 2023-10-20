@@ -1,6 +1,6 @@
 import {Spin} from 'antd';
 import {useRequest} from 'ahooks';
-import {apiGet, apiUrl} from '@/api';
+import {apiGet, apiPost, apiUrl} from '@/api';
 import {useEffect, useState} from 'react';
 import {findNearbyLocations} from '@/utils/haversineDistance';
 import {isEmptyObject} from '@/utils/isEmptyObject';
@@ -9,15 +9,23 @@ import {DataItem} from '@/types';
 
 export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
 {
-    const [nearByCountries, setAllCountries] = useState([]);
-    const {data, loading, run: getAllCountries} = useRequest(() => apiGet(`${apiUrl}`),
+    const [nearByCountries, setAllNearByCountries] = useState([]);
+    const {data, loading, run: getNearbyCountries} = useRequest(
+        (payload: Record<string, any>) => apiPost(`${apiUrl}/nearby`, {
+            getResponse: true,
+            data: payload},),
         {manual: true, cacheKey: 'places'});
 
     useEffect(() =>
     {
+        console.log('selectedCountry', selectedCountry);
         if (!isEmptyObject(selectedCountry))
         {
-            getAllCountries();
+            const values = {
+                latitude: selectedCountry.latitude,
+                longitude: selectedCountry.longitude
+            }
+            getNearbyCountries(values);
         }
 
     }, [selectedCountry]);
@@ -26,8 +34,7 @@ export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
     {
         if (data)
         {
-            const nearBy = findNearbyLocations(selectedCountry.latitude, selectedCountry.longitude, data as unknown as DataItem[]);
-            setAllCountries(nearBy);
+            setAllNearByCountries(nearCountries);
         }
     }, [data]);
 

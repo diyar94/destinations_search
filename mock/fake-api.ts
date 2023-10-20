@@ -1,5 +1,6 @@
 import {readFileSync} from 'fs';
 import {DataItem} from '@/types';
+import {findNearbyLocations} from './utils/findNearbyLocations';
 
 // this will behave as a handler for requests
 /*
@@ -37,4 +38,34 @@ export default {
         }
 
     },
+    'POST /api/places/nearby': (req, res) =>
+    {
+        const {query} = req;
+        const dataRaw = readFileSync('mock/data.json', 'utf-8');
+        const {latitude, longitude} = req.body;
+        console.log('liongitude', longitude);
+        try
+        {
+            let nearby: DataItem[] = [];
+            if (latitude && longitude)
+            {
+                 nearby = findNearbyLocations(latitude, longitude, JSON.parse(dataRaw));
+            }
+            res.status(200).json({
+                message: 'all good for nearby',
+                nearCountries: nearby
+            });
+
+
+        }
+        catch (e)
+        {
+            res.status(400).json({
+                error: {
+                    message: e.message
+                }
+            });
+        }
+
+    }
 };
