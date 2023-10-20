@@ -1,11 +1,5 @@
-import {DataItem} from '@/types';
 
-const haversineDistance = (
-    lat1: number,
-    lon1: number,
-    lat2: number,
-    lon2: number
-): number => {
+function haversineDistance(lat1, lon1, lat2, lon2)  {
     const R = 6371; // Radius of the Earth in kilometers
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
@@ -17,14 +11,9 @@ const haversineDistance = (
         Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c; // Distance in kilometers
-};
+}
 
-export const findNearbyLocations = (
-    latitude: number,
-    longitude: number,
-    destinations: DataItem[],
-    limit: number = 5
-): DataItem[] => {
+ const findNearbyLocations = (latitude, longitude, destinations, limit = 5) => {
     const distances = destinations.map((destination) => ({
         ...destination,
         distance: haversineDistance(latitude, longitude, destination.latitude, destination.longitude)
@@ -40,7 +29,6 @@ export const findNearbyLocations = (
         nearbyLocations.push(distances[index]);
         index++;
     }
-
     return nearbyLocations;
 };
-
+module.exports = findNearbyLocations

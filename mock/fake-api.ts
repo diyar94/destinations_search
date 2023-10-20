@@ -43,7 +43,6 @@ export default {
         const {query} = req;
         const dataRaw = readFileSync('mock/data.json', 'utf-8');
         const {latitude, longitude} = req.body;
-        console.log('liongitude', longitude);
         try
         {
             let nearby: DataItem[] = [];

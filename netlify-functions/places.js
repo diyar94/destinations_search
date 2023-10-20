@@ -1,5 +1,5 @@
 const requestResult = require('./requestResult');
-
+const findNearbyLocations = require('./findNearbyLocations');
 
 exports.handler = async (event, _context) =>
 {
@@ -218,8 +218,6 @@ exports.handler = async (event, _context) =>
         return requestResult(204, null);
     }
 
-    console.log(event.httpMethod);
-
     if (event.httpMethod === 'GET')
     {
 
@@ -234,6 +232,18 @@ exports.handler = async (event, _context) =>
         }
 
         return requestResult(200, data);
+
+    }
+    if (event.httpMethod === 'POST')
+    {
+
+        const {latitude, longitude} = JSON.parse(event.body);
+        if (latitude && longitude)
+        {
+            data = findNearbyLocations(latitude, longitude, data);
+
+        }
+        return requestResult(200, {nearCountries: data});
 
     }
 
