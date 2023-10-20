@@ -2,12 +2,11 @@ import {readFileSync} from 'fs';
 import {DataItem} from '@/types';
 
 
-
 export default {
     'GET /api/places': (req, res) =>
     {
 
-        const dataRaw = readFileSync('mock/data.json', 'utf-8');
+        const dataRaw = readFileSync('public/data.json', 'utf-8');
 
         const {query} = req;
 

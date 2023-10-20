@@ -17,11 +17,14 @@ const DestinationSearch: React.FC = () =>
 
     useEffect(() =>
     {
+
         if (Array.isArray(data) && !loading)
         {
             setOptions(data.map(el => ({label: el.name, value: el.name, ...el})));
         }
-    }, [data]);
+
+
+    }, [data, loading]);
 
     const handleSearch = (text: string) =>
     {
@@ -35,22 +38,24 @@ const DestinationSearch: React.FC = () =>
 
     return <div className={'destination-search-container'}>
         <div className={'inner-container'}>
-        <span className={'location'}>Location</span>
+            <span className={'location'}>Location</span>
 
-        <Select showSearch
-                placeholder={'Search for a location...'}
-                className={'destination-search'}
-                defaultActiveFirstOption={false}
-                options={options}
-                suffixIcon={null}
-                loading={true}
-                onSearch={handleSearch}
-                onSelect={handleSelect}
-                notFoundContent={loading && <div className={'loading'}> <Spin size={'small'} /></div>}
-        />
+            <Select showSearch
+                    // onFocus={() => setLoadingState(true)}
+                    // onBlur={() => setLoadingState(false)}
+                    placeholder={'Search for a location...'}
+                    className={'destination-search'}
+                    defaultActiveFirstOption={false}
+                    options={options}
+                    suffixIcon={null}
+                    loading={true}
+                    onSearch={handleSearch}
+                    onSelect={handleSelect}
+                    notFoundContent={loading  && <div className={'loading'}><Spin size={'small'}/></div>}
+            />
 
         </div>
-    </div>
+    </div>;
 };
 
 export default DestinationSearch;
