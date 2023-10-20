@@ -1,6 +1,6 @@
 import {Spin} from 'antd';
 import {useRequest} from 'ahooks';
-import {apiGet} from '@/api';
+import {apiGet, apiUrl} from '@/api';
 import {useEffect, useState} from 'react';
 import {findNearbyLocations} from '@/utils/haversineDistance';
 import {isEmptyObject} from '@/utils/isEmptyObject';
@@ -10,7 +10,7 @@ import {DataItem} from '@/types';
 export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
 {
     const [nearByCountries, setAllCountries] = useState([]);
-    const {data, loading, run: getAllCountries} = useRequest(() => apiGet(`/api/places`),
+    const {data, loading, run: getAllCountries} = useRequest(() => apiGet(`${apiUrl}`),
         {manual: true, cacheKey: 'places'});
 
     useEffect(() =>
