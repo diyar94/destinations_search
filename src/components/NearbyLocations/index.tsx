@@ -1,10 +1,8 @@
 import {Spin} from 'antd';
 import {useRequest} from 'ahooks';
-import {apiGet, apiPost, apiUrl} from '@/api';
+import {apiPost, apiUrl} from '@/api';
 import {useEffect, useState} from 'react';
-import {findNearbyLocations} from '@/utils/haversineDistance';
 import {isEmptyObject} from '@/utils/isEmptyObject';
-import {DataItem} from '@/types';
 
 
 export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
@@ -34,7 +32,7 @@ export const NearbyLocations = ({selectedCountry, handleTagClick}) =>
     {
         if (data)
         {
-            setAllNearByCountries(nearCountries);
+            setAllNearByCountries(nearByCountries);
         }
     }, [data]);
 
