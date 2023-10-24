@@ -1,3 +1,5 @@
+Deployed to: https://moziotask.netlify.app/
+
 # Destination search 
 
 Small app written in React, Typescript, Umi.js
